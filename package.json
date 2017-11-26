@@ -1,0 +1,23 @@
+{
+  "name": "bankbot-",
+  "version": "1.0.0",
+  "description": "This is an bank chatbot which is used by the person who could login the bank page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcui761/BankBot-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcui761/BankBot-/issues"
+  },
+  "homepage": "https://github.com/rcui761/BankBot-#readme",
+  "dependencies": {
+    "botbuilder": "^3.12.0",
+    "restify": "^6.3.4"
+  }
+}

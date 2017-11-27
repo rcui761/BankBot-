@@ -67,7 +67,7 @@ exports.startDialog = function (bot) {
          if (checktime(results.response)) {
              session.conversationData["time"] = results.response;
              appointment.sendAppointment(session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
-             appointment.displayAddAppointment(session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
+             //appointment.displayAddAppointment(session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
              session.conversationData["date"] = null;
              session.conversationData["time"] = null;
              session.conversationData["type"] = null;

@@ -89,12 +89,28 @@ deleteMoreAppointment= function deleteData(url, session, date, time, type, id) {
 
 
 //display function 
-exports.getAppointment = function getData(url, session, callback) {
+exports.getAppointment = function getData(url, session) {
     request.get(url, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function (err, res, body) {
         if (err) {
             console.log(err);
         } else {
-            callback(body, session);// what the meaning of callback 
+            //callback(body, session);// what the meaning of callback 
+            var bookedAppointment = JSON.parse(body);
+            var allAppointmentdate = [];
+            var allAppointmenttime = [];
+            var allAppointmenttype = [];
+            session.send("There is your booked appointment(s).")
+            for (var index in bookedAppointment) {
+                var typeReceived = bookedAppointment[index].type;
+                var dateReceived = bookedAppointment[index].date;
+                var timeReceived = bookedAppointment[index].time;
+        
+                //Convert to lower case whilst doing comparison to ensure the user can type whatever they like
+                allAppointmenttype.push(typeReceived);
+                allAppointmentdate.push(dateReceived);
+                allAppointmenttime.push(timeReceived);
+                session.send("You have %s apointment which was booked on %s at %s", allAppointmenttype[index], allAppointmentdate[index], allAppointmenttime[index]);
+            }
         }
     });
 };

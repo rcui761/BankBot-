@@ -9,7 +9,7 @@ exports.startDialog = function (bot) {
     var recognizer = new builder.LuisRecognizer('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/c86641ce-4e55-4ba0-8144-a33479f29ee3?subscription-key=9550517905df40759773057d1ebe1a7a&verbose=true&timezoneOffset=0&q=	');
 
     bot.recognizer(recognizer);
-
+// menu right 
     bot.dialog('Menu', [
         function (session, args, next) {
             var msg = session.message.text;
@@ -26,6 +26,8 @@ exports.startDialog = function (bot) {
             matches: 'Menu'
     }); 
 
+
+
     //this is add function 
     bot.dialog('AddAppointment', [
         function (session, args, next) {
@@ -36,30 +38,27 @@ exports.startDialog = function (bot) {
                     customVision.retreiveMessage(session);
                    // session.endDialog("end end end end end");
             }else{
-                console.log("##################################");
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        console.log(args);
-         session.dialogData.args = args || {};
-         console.log(session.dialogData.args.intent.entities);
-         var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
-         if (!session.conversationData["date"] && appointmentEntity) {
-             session.conversationData["type"] = appointmentEntity.entity;
-             builder.Prompts.text(session, "Enter the appointment date , for example 01/01/2017");
-             } else {
-                session.send("This type of appointment is not identified! We have investment appointment, statement issues appointment and loan appointment"); 
+
+
+            session.dialogData.args = args || {};
+            var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
+            if (appointmentEntity) {
+            session.conversationData["type"] = appointmentEntity.entity;
+            builder.Prompts.text(session, "Enter the appointment date, for example 01/01/2017.");
+            } else {
+                session.send("The type of appointment is not identified! We have investment appointment, statement issues appointment and loan appointment."); 
              }
             
         }
     },
     function (session, results,args,next) {
-
            if (checkdate(results.response)) {
                session.conversationData["date"] = results.response;
-               builder.Prompts.text(session, "Enter the appointment time ,for example 14：00 and 09:30");
+               builder.Prompts.text(session, "Enter the appointment time ,for example 14：00 or 09:30.");
 
            } else {
                 session.conversationData["date"] = null;
-               session.send("The formart of appointment date is incorrect, please start book an appointment again");
+                session.send("The formart of appointment date is incorrect, please start book an appointment again.");
               
            }
        },
@@ -72,10 +71,10 @@ exports.startDialog = function (bot) {
              session.conversationData["date"] = null;
              session.conversationData["time"] = null;
              session.conversationData["type"] = null;
-             //session.send('Thanks for booking an appointment with us.');
+             session.send('Thanks for booking an appointment with us.');
          } else {
-            session.conversationData["date"] = null;
-             session.send("The formart of appointment time is not incorrect, please start book an appointment again");
+             session.conversationData["date"] = null;
+             session.send("The formart of appointment time is not incorrect, please start book an appointment again.");
          }
      }
  ]).triggerAction({
@@ -98,10 +97,10 @@ exports.startDialog = function (bot) {
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.debug(session.conversationData["date"]);
             console.debug(session.conversationData["time"]);
-            if (!session.conversationData["date"] && !session.conversationData["time"] && !session.conversationData["type"]) {
+            //if (!session.conversationData["date"] && !session.conversationData["time"] && !session.conversationData["type"]) {
                 session.send("Retrieving your booked appointment date and time");
                 appointment.displayAppointment(session);
-            }
+            //}
         }
     }
 
@@ -123,7 +122,7 @@ bot.dialog('CancelAppointment', [
             
              session.dialogData.args = args || {};
              var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
-             if (!session.conversationData["date"] && appointmentEntity) {
+             if ( appointmentEntity) {
                  session.conversationData["type"] = appointmentEntity.entity;
                  builder.Prompts.text(session, "Enter the appointment date you want to delete, for example 01/01/2017");
                  } else {
@@ -139,7 +138,7 @@ bot.dialog('CancelAppointment', [
                    builder.Prompts.text(session, "Enter the appointment time you want to delete ,for example 14：00 and 09:30");
     
                } else {
-                    session.conversationData["date"] = null;
+                    
                    session.send("The formart of appointment date is incorrect, please start delete an appointment again");
                   
                }
@@ -155,7 +154,7 @@ bot.dialog('CancelAppointment', [
                  //session.send('Thanks for deleting an appointment with us.');
              } else {
                 session.conversationData["date"] = null;
-                 session.send("The formart of appointment time is not incorrect, please start delete an appointment again");
+                session.send("The formart of appointment time is not incorrect, please start delete an appointment again");
              }
          }
      ]).triggerAction({

@@ -9,9 +9,7 @@ exports.sendAppointment = function postAppointment(session, date, time, type) {
 
 exports.displayAddAppointment = function getAddAppointment(session, date, time, type) {
     var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
-    console.log("888888888888888888888888888888888");
-   
-   rest.getAddAppointment(url,session, date, time,type);
+    rest.getAddAppointment(url,session, date, time,type);
    
 };
 

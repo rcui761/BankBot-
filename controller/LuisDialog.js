@@ -1,6 +1,7 @@
 ﻿var builder = require('botbuilder');
 var appointment = require("./AppointmentBook");
 var currency = require("./CurrencyRate");
+var customVision = require("./CustomVision");
 
 
 exports.startDialog = function (bot) {
@@ -9,21 +10,37 @@ exports.startDialog = function (bot) {
 
     bot.recognizer(recognizer);
 
-    bot.dialog('Menu', function (session, args) {
-       
+    bot.dialog('Menu', [
+        function (session, args, next) {
+            var msg = session.message.text;
+            if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
+                    //call custom vision
+                    customVision.retreiveMessage(session);
+                    //session.endDialog("end end end end end");
+            }
+            else{
         session.send("Hello welcome to Contoso Bank live chat");
         session.send("We can help you manage bank appointment, view currency rate and recognize currency from upload pictures.")
-
-        
-    }).triggerAction({
+        }
+    }]).triggerAction({
             matches: 'Menu'
     }); 
 
     //this is add function 
     bot.dialog('AddAppointment', [
-
-         function (session, args, next) {
+        function (session, args, next) {
+           
+            var msg = session.message.text;
+            if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
+                    //call custom vision
+                    customVision.retreiveMessage(session);
+                   // session.endDialog("end end end end end");
+            }else{
+                console.log("##################################");
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log(args);
          session.dialogData.args = args || {};
+         console.log(session.dialogData.args.intent.entities);
          var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
          if (!session.conversationData["date"] && appointmentEntity) {
              session.conversationData["type"] = appointmentEntity.entity;
@@ -31,9 +48,10 @@ exports.startDialog = function (bot) {
              } else {
                 session.send("This type of appointment is not identified! We have investment appointment, statement issues appointment and loan appointment"); 
              }
-        },
-
-       function (session, results,args,next) {
+            
+        }
+    },
+    function (session, results,args,next) {
 
            if (checkdate(results.response)) {
                session.conversationData["date"] = results.response;
@@ -69,6 +87,13 @@ exports.startDialog = function (bot) {
 //show appointment
     bot.dialog('ShowAppointment', [
         function (session, args, next) {
+            var msg = session.message.text;
+            if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
+                    //call custom vision
+                    customVision.retreiveMessage(session);
+                    //session.endDialog("end end end end end");
+            }else{
+                
             session.dialogData.args = args || {};
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.debug(session.conversationData["date"]);
@@ -78,6 +103,7 @@ exports.startDialog = function (bot) {
                 appointment.displayAppointment(session);
             }
         }
+    }
 
     ]).triggerAction({
         matches: 'ShowAppointment'
@@ -87,8 +113,14 @@ exports.startDialog = function (bot) {
 // delete appointment
 
 bot.dialog('CancelAppointment', [
-    
-             function (session, args, next) {
+    function (session, args, next) {
+        var msg = session.message.text;
+        if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
+                //call custom vision
+                customVision.retreiveMessage(session);
+               // session.endDialog("end end end end end");
+        }else{
+            
              session.dialogData.args = args || {};
              var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
              if (!session.conversationData["date"] && appointmentEntity) {
@@ -97,7 +129,8 @@ bot.dialog('CancelAppointment', [
                  } else {
                     session.send("This type of appointment is not identified! We have investment appointment, statement issues appointment and loan appointment"); 
                  }
-            },
+            }
+        },
     
            function (session, results,args,next) {
     
@@ -131,11 +164,19 @@ bot.dialog('CancelAppointment', [
     
 
 bot.dialog('Currency', [
-                function (session, args, next) {
+    function (session, args, next) {
+        var msg = session.message.text;
+        if ((session.message.attachments && session.message.attachments.length > 0) || msg.includes("http")) {
+                //call custom vision
+                customVision.retreiveMessage(session);
+                //session.endDialog("end end end end end");
+        }else{
+            
                     session.dialogData.args = args || {};
                     builder.Prompts.text(session, "Enter base currency, eg.USD.");
                     
-                },
+                }
+            },
                 function(session, results, args, next) {
                     if (checkcurreny(results.response)){
                         session.conversationData["base"] = results.response;
@@ -163,7 +204,12 @@ bot.dialog('Currency', [
             ]).triggerAction({
                 matches: 'Currency'
                 });
+
+
 }
+
+
+
 
 
 function checkdate(response) {
@@ -196,3 +242,6 @@ function checkcurreny(response){
         return true;
     }
 }
+
+
+    

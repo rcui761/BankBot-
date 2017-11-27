@@ -72,7 +72,7 @@ exports.startDialog = function (bot) {
              session.conversationData["date"] = null;
              session.conversationData["time"] = null;
              session.conversationData["type"] = null;
-             session.send('Thanks for booking an appointment with us.');
+             //session.send('Thanks for booking an appointment with us.');
          } else {
             session.conversationData["date"] = null;
              session.send("The formart of appointment time is not incorrect, please start book an appointment again");

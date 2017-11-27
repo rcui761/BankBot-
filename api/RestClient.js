@@ -179,6 +179,24 @@ exports.deleteAppointment= function deleteData(url, session, date, time, type, i
 };
 
 
+//currency
+
+exports.getCurrencyData = function getData(url, session,base,currency,callback){
+    
+        request.get(url, function processGetRequest(err,res,body){
+            if(err){
+                console.log(err);
+            }else {
+
+                callback(body,session,base,currency)
+                
+
+                
+            }
+        });
+    };
+ 
+
 
 
 

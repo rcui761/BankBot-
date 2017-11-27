@@ -1,10 +1,11 @@
 ﻿var builder = require('botbuilder');
-var appointment = require("./AppointmentBook")
+var appointment = require("./AppointmentBook");
+var currency = require("./CurrencyRate");
 
 
 exports.startDialog = function (bot) {
 
-    var recognizer = new builder.LuisRecognizer('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/99c304ea-afdc-4e68-a30f-e81407f35a5e?subscription-key=2707128c13c84e70926996fd888d8d4e&verbose=true&timezoneOffset=0&q=');
+    var recognizer = new builder.LuisRecognizer('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/c86641ce-4e55-4ba0-8144-a33479f29ee3?subscription-key=9550517905df40759773057d1ebe1a7a&verbose=true&timezoneOffset=0&q=	');
 
     bot.recognizer(recognizer);
 
@@ -129,6 +130,39 @@ bot.dialog('CancelAppointment', [
             });
     
 
+bot.dialog('Currency', [
+                function (session, args, next) {
+                    session.dialogData.args = args || {};
+                    builder.Prompts.text(session, "Enter base currency, eg.USD.");
+                    
+                },
+                function(session, results, args, next) {
+                    if (checkcurreny(results.response)){
+                        session.conversationData["base"] = results.response;
+                        builder.Prompts.text(session,"Enter currency rate based on the currency you entered, eg.AUD.");
+                    }else{
+                        //if the response is false restart again 
+                        session.send("The base currency format is not right");
+                    }
+                },
+                function(session, results, args, next) {
+                    console.log("hhhhhhhhhhhhhhhhhhhhhhhh");
+                    if (checkcurreny(results.response)){
+                        console.log("111111111111111111111111111111");
+                        session.conversationData["currency"] = results.response;
+                        // display the currency using the rich card
+                        currency.displayCurrencyCards(session, session.conversationData["base"] ,session.conversationData["currency"])
+            
+            
+                    }else{
+                        //if the response is false restart again 
+                        session.send("The currency format is not right");
+                    }
+                }
+            
+            ]).triggerAction({
+                matches: 'Currency'
+                });
 }
 
 
@@ -152,4 +186,13 @@ function checktime(response) {
         return true;
     }
 
+}
+
+
+function checkcurreny(response){
+    if(response.length!==3){
+        return false
+    }else{
+        return true;
+    }
 }

@@ -18,11 +18,11 @@ exports.displayAddAppointment = function getAddAppointment(session, date, time, 
 //display function
 exports.displayAppointment = function getAppointment(session) {
     var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
-    rest.getAppointment(url, session, handleAppointmentResponse);
+    rest.getAppointment(url, session);
 };
 
 
-function handleAppointmentResponse(message, session) {//message is the body
+/* function handleAppointmentResponse(message, session) {//message is the body
     var bookedAppointment = JSON.parse(message);
     var allAppointmentdate = [];
     var allAppointmenttime = [];
@@ -41,7 +41,7 @@ function handleAppointmentResponse(message, session) {//message is the body
     }
 
 };
-
+ */
 
 //delete 
 

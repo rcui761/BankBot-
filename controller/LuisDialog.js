@@ -93,10 +93,7 @@ exports.startDialog = function (bot) {
                     //session.endDialog("end end end end end");
             }else{
                 
-            session.dialogData.args = args || {};
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            console.debug(session.conversationData["date"]);
-            console.debug(session.conversationData["time"]);
+            //session.dialogData.args = args || {};
             //if (!session.conversationData["date"] && !session.conversationData["time"] && !session.conversationData["type"]) {
                 session.send("Retrieving your booked appointment date and time");
                 appointment.displayAppointment(session);

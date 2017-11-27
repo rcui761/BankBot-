@@ -2,7 +2,7 @@
 var appointment = require("./AppointmentBook");
 var currency = require("./CurrencyRate");
 var customVision = require("./CustomVision");
-
+//this is luispart
 
 exports.startDialog = function (bot) {
 

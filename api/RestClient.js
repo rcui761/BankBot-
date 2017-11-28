@@ -17,12 +17,12 @@ exports.postAppointment = function getData(url, date, time,type) {
       
       request(options, function (error, response, body) {
         if (!error && response.statusCode === 200) {
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log(body);
 
         }
         else{
-            console.log(error);  
+             console.log(error);  
         }
       });
 };
@@ -47,7 +47,7 @@ deleteMoreAppointment= function deleteData(url, session, date, time, type, id) {
         } else {
             console.log(err);
             console.log(res);
-            console.log("done done done done");
+            //console.log("done done done done");
         }
     })
 
@@ -91,7 +91,7 @@ exports.checkDeleteAppointment = function getData(url, session, date, time,type)
         if (err) {
             console.log(err);
         } else {
-            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             var bookedAppointment = JSON.parse(body);
                 var check = 0;
                 //var row= 0;
@@ -103,15 +103,12 @@ exports.checkDeleteAppointment = function getData(url, session, date, time,type)
                     var typeReceived = bookedAppointment[index].type;
                     var dateReceived = bookedAppointment[index].date;
                     var timeReceived = bookedAppointment[index].time;
-                    console.log("In in in in in in in ");
-                    console.log(dateReceived);
-                    console.log(date);
-                    console.log(timeReceived);
-                    console.log(time);
-                /*     if (dateReceived != date && timeReceived != time && typeReceived != type){
-
-                        check = check + 1; 
-                    } */
+                    //console.log("In in in in in in in ");
+                    //console.log(dateReceived);
+                    //console.log(date);
+                    //console.log(timeReceived);
+                   // console.log(time);
+               
                     if (dateReceived === date && timeReceived === time && typeReceived === type){
                         deleteMoreAppointment(url, session, date, time, type, bookedAppointment[index].id);
                         session.send("Thanks for deleting an appointment with us.");
@@ -119,16 +116,16 @@ exports.checkDeleteAppointment = function getData(url, session, date, time,type)
                     }
                          
                 }
-                console.log("check check check check ");
-                console.log(check);
-                console.log("row row row row row ");
+                //console.log("check check check check ");
+                //console.log(check);
+               // console.log("row row row row row ");
                 //console.log(row);
-                console.log("true or false");
+                //console.log("true or false");
                 //console.log(check === row);
-                console.log(check != 0);
-                console.log(check !== 0);
+                //console.log(check != 0);
+                //console.log(check !== 0);
                 if (check === 0){
-                    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+                    //sconsole.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
                     session.send("You did not book %s appointment on %s at %s before.",type,date,time);
                 }
 

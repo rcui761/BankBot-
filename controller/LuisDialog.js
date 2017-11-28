@@ -71,16 +71,17 @@ exports.startDialog = function (bot) {
             var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
 
              //rest.getAddAppointment(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
-            console.log("222222222222222222222222222222222222");
+  // console.log("222222222222222222222222222222222222");
             //console.log(getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],callback(check)));
              getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],function(check,session,date,time,type){
-                console.log("222222222222222222222222222222222222");
+                //console.log("222222222222222222222222222222222222");
                 //console.log(check);
                 if(check){
-                    appointment.sendAppointment(session, date, time, type);
                     session.send('Thanks for booking an appointment with us.');
+                    appointment.sendAppointment(session, date, time, type);
+                    //session.send('Thanks for booking an appointment with us.');
                 }else{
-                    session.send("already");
+                    session.send("You booked %s appointment on %s at %s already",type,date,day);
                 }
              });
              
@@ -202,9 +203,9 @@ bot.dialog('Currency', [
                     }
                 },
                 function(session, results, args, next) {
-                    console.log("hhhhhhhhhhhhhhhhhhhhhhhh");
+                   // console.log("hhhhhhhhhhhhhhhhhhhhhhhh");
                     if (checkcurreny(results.response)){
-                        console.log("111111111111111111111111111111");
+                       //console.log("111111111111111111111111111111");
                         session.conversationData["currency"] = results.response;
                         // display the currency using the rich card
                         currency.displayCurrencyCards(session, session.conversationData["base"] ,session.conversationData["currency"])
@@ -268,17 +269,17 @@ function checkcurreny(response){
             console.log(err);
         }else {
             var bookedAppointment = JSON.parse(body);
-            console.log("!!!!!!!!!!!!!!!!!!!!!!");
-            console.log(bookedAppointment);
+            //console.log("!!!!!!!!!!!!!!!!!!!!!!");
+            //console.log(bookedAppointment);
             for (var index in bookedAppointment) {
                 var typeReceived = bookedAppointment[index].type;
                 var dateReceived = bookedAppointment[index].date;
                 var timeReceived = bookedAppointment[index].time;
-                console.log(dateReceived + '===='+ date);
-                console.log(timeReceived + '===='+ time);
+               // console.log(dateReceived + '===='+ date);
+                //console.log(timeReceived + '===='+ time);
 
-                console.log(dateReceived === date);
-                console.log(timeReceived === time);
+                //console.log(dateReceived === date);
+                //console.log(timeReceived === time);
                 if (dateReceived === date && timeReceived === time) {
                     
                     check = false;// false

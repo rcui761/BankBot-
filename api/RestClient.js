@@ -64,7 +64,6 @@ exports.getAppointment = function getData(url, session) {
         } else {
             //callback(body, session);// what the meaning of callback 
             var bookedAppointment = JSON.parse(body);
-            session.send(res);
             var allAppointmentdate = [];
             var allAppointmenttime = [];
             var allAppointmenttype = [];

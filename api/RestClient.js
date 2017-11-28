@@ -103,11 +103,6 @@ exports.checkDeleteAppointment = function getData(url, session, date, time,type)
                     var typeReceived = bookedAppointment[index].type;
                     var dateReceived = bookedAppointment[index].date;
                     var timeReceived = bookedAppointment[index].time;
-                    //console.log("In in in in in in in ");
-                    //console.log(dateReceived);
-                    //console.log(date);
-                    //console.log(timeReceived);
-                   // console.log(time);
                
                     if (dateReceived === date && timeReceived === time && typeReceived === type){
                         deleteMoreAppointment(url, session, date, time, type, bookedAppointment[index].id);
@@ -116,16 +111,9 @@ exports.checkDeleteAppointment = function getData(url, session, date, time,type)
                     }
                          
                 }
-                //console.log("check check check check ");
-                //console.log(check);
-               // console.log("row row row row row ");
-                //console.log(row);
-                //console.log("true or false");
-                //console.log(check === row);
-                //console.log(check != 0);
-                //console.log(check !== 0);
+                
                 if (check === 0){
-                    //sconsole.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+                   
                     session.send("You did not book %s appointment on %s at %s before.",type,date,time);
                 }
 
@@ -170,7 +158,6 @@ exports.getCurrencyData = function getData(url, session,base,currency,callback){
             }else {
 
                 callback(body,session,base,currency)
-                
 
                 
             }

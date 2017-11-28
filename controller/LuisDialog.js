@@ -69,25 +69,17 @@ exports.startDialog = function (bot) {
          if (checktime(results.response)) {
              session.conversationData["time"] = results.response;
             var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
-
-             //rest.getAddAppointment(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
-  // console.log("222222222222222222222222222222222222");
-            //console.log(getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],callback(check)));
              getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],function(check,session,date,time,type){
-                //console.log("222222222222222222222222222222222222");
-                //console.log(check);
+                console.log('HIT');
                 if(check){
                     session.send('Thanks for booking an appointment with us.');
                     appointment.sendAppointment(session, date, time, type);
-                    //session.send('Thanks for booking an appointment with us.');
                 }else{
-                    session.send("You booked %s appointment on %s at %s already",type,date,day);
+                    session.send("You booked %s appointment on %s at %s already",type,date,time);
                 }
              });
              
           
-            
-             
              session.conversationData["date"] = null;
              session.conversationData["time"] = null;
              session.conversationData["type"] = null;
@@ -275,11 +267,7 @@ function checkcurreny(response){
                 var typeReceived = bookedAppointment[index].type;
                 var dateReceived = bookedAppointment[index].date;
                 var timeReceived = bookedAppointment[index].time;
-               // console.log(dateReceived + '===='+ date);
-                //console.log(timeReceived + '===='+ time);
-
-                //console.log(dateReceived === date);
-                //console.log(timeReceived === time);
+              
                 if (dateReceived === date && timeReceived === time) {
                     
                     check = false;// false

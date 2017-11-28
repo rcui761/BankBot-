@@ -27,39 +27,7 @@ exports.postAppointment = function getData(url, date, time,type) {
       });
 };
 
-exports.getAddAppointment = function getData(url, session, date, time, type){
-    
-        request.get(url, {'headers':{'ZUMO-API-VERSION': '2.0.0'}}, function(err,res,body){
-            if(err){
-                console.log(err);
-            }else {
-                    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                    console.log(body);
-                    var bookedAppointment = JSON.parse(body);
-                    var allAppointmentdate = [];
-                    var allAppointmenttime = [];
-                    var allAppointmenttype = [];
-                    for (var index in bookedAppointment) {
-                        var typeReceived = bookedAppointment[index].type;
-                        var dateReceived = bookedAppointment[index].date;
-                        var timeReceived = bookedAppointment[index].time;
-                        console.log("In in in in in in in ");
-                        console.log(dateReceived);
-                        console.log(date);
-                        console.log(timeReceived);
-                        console.log(time);
-                        if (dateReceived === date && timeReceived === time) {
-                            console.log("44444444444444444444444444444444444444");
-                            session.send("You booked %s apointment on %s at %s already, please book another one.", typeReceived, dateReceived, timeReceived);  
-                       
-                            deleteMoreAppointment(url, session, date, time, type, bookedAppointment[index].id);
-                        } 
-                
-                    }
-                  
-            }
-        });
-    };
+
 
 
 

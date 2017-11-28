@@ -7,11 +7,11 @@ exports.sendAppointment = function postAppointment(session, date, time, type) {
 
 };
 
-exports.displayAddAppointment = function getAddAppointment(session, date, time, type) {
+/* exports.displayAddAppointment = function getAddAppointment(session, date, time, type) {
     var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
     rest.getAddAppointment(url,session, date, time,type);
    
-};
+}; */
 
 
 

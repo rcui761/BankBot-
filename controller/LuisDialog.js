@@ -2,6 +2,8 @@
 var appointment = require("./AppointmentBook");
 var currency = require("./CurrencyRate");
 var customVision = require("./CustomVision");
+var rest = require('../api/Restclient');
+var request = require("request");
 //this is luispart
 
 exports.startDialog = function (bot) {
@@ -66,12 +68,29 @@ exports.startDialog = function (bot) {
      function (session, results, next) {
          if (checktime(results.response)) {
              session.conversationData["time"] = results.response;
-             appointment.sendAppointment(session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
-             //appointment.displayAddAppointment(session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
+            var url = 'http://bankchat.azurewebsites.net/tables/BankChat';
+
+             //rest.getAddAppointment(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"]);
+            console.log("222222222222222222222222222222222222");
+            //console.log(getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],callback(check)));
+             getData(url, session, session.conversationData["date"], session.conversationData["time"], session.conversationData["type"],function(check,session,date,time,type){
+                console.log("222222222222222222222222222222222222");
+                //console.log(check);
+                if(check){
+                    appointment.sendAppointment(session, date, time, type);
+                    session.send('Thanks for booking an appointment with us.');
+                }else{
+                    session.send("already");
+                }
+             });
+             
+          
+            
+             
              session.conversationData["date"] = null;
              session.conversationData["time"] = null;
              session.conversationData["type"] = null;
-             session.send('Thanks for booking an appointment with us.');
+            
          } else {
              session.conversationData["date"] = null;
              session.send("The formart of appointment time is not incorrect, please start book an appointment again.");
@@ -240,4 +259,35 @@ function checkcurreny(response){
 }
 
 
-    
+ function getData(url, session, date, time, type,callback){
+    var check = true;
+    request.get(url, {'headers':{'ZUMO-API-VERSION': '2.0.0'}}, function(err,res,body){
+        
+     
+        if(err){
+            console.log(err);
+        }else {
+            var bookedAppointment = JSON.parse(body);
+            console.log("!!!!!!!!!!!!!!!!!!!!!!");
+            console.log(bookedAppointment);
+            for (var index in bookedAppointment) {
+                var typeReceived = bookedAppointment[index].type;
+                var dateReceived = bookedAppointment[index].date;
+                var timeReceived = bookedAppointment[index].time;
+                console.log(dateReceived + '===='+ date);
+                console.log(timeReceived + '===='+ time);
+
+                console.log(dateReceived === date);
+                console.log(timeReceived === time);
+                if (dateReceived === date && timeReceived === time) {
+                    
+                    check = false;// false
+                    }
+                }
+        
+        }
+
+        callback(check,session,date,time,type);
+    });
+};
+

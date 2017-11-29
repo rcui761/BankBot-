@@ -57,7 +57,7 @@ exports.displayCurrencyCards = function getCurrencyData(session,base, currency){
                                         "items": [
                                             {
                                                 "type": "TextBlock",
-                                                "text": "date:" + date,
+                                                "text": "Date:" + date,
                                                 "size": "small",
                                                 "weight": "bolder",
                                             }

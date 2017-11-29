@@ -77,7 +77,7 @@ exports.getAppointment = function getData(url, session) {
                 allAppointmenttype.push(typeReceived);
                 allAppointmentdate.push(dateReceived);
                 allAppointmenttime.push(timeReceived);
-                session.send("You have %s apointment which was booked on %s at %s", allAppointmenttype[index], allAppointmentdate[index], allAppointmenttime[index]);
+                session.send("You have %s apointment which was on %s at %s", allAppointmenttype[index], allAppointmentdate[index], allAppointmenttime[index]);
             }
         }
     });

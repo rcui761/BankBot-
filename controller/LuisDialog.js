@@ -22,7 +22,7 @@ exports.startDialog = function (bot) {
             }
             else{
         session.send("Hello welcome to Contoso Bank live chat");
-        session.send("We can help you manage bank appointment, view currency rate and recognize currency from upload pictures.")
+        session.send("We can help you manage bank appointment, view currency rate and recognize currency from uploading pictures.")
         }
     }]).triggerAction({
             matches: 'Menu'
@@ -46,7 +46,7 @@ exports.startDialog = function (bot) {
             var appointmentEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'AppointmentType');
             if (appointmentEntity) {
             session.conversationData["type"] = appointmentEntity.entity;
-            builder.Prompts.text(session, "Enter the appointment date, for example 01/01/2017.");
+            builder.Prompts.text(session, "Enter your appointment date, for example 01/01/2017.");
             } else {
                 session.send("The type of appointment is not identified! We have investment appointment, statement issues appointment and loan appointment."); 
              }
@@ -56,7 +56,7 @@ exports.startDialog = function (bot) {
     function (session, results,args,next) {
            if (checkdate(results.response)) {
                session.conversationData["date"] = results.response;
-               builder.Prompts.text(session, "Enter the appointment time ,for example 14：00 or 09:30.");
+               builder.Prompts.text(session, "Enter your appointment time ,for example 14:00 or 09:30.");
 
            } else {
                 session.conversationData["date"] = null;
@@ -144,7 +144,7 @@ bot.dialog('CancelAppointment', [
     
                if (checkdate(results.response)) {
                    session.conversationData["date"] = results.response;
-                   builder.Prompts.text(session, "Enter the appointment time you want to delete ,for example 14：00 and 09:30");
+                   builder.Prompts.text(session, "Enter the appointment time you want to delete ,for example 14:00 and 09:30");
     
                } else {
                     
@@ -181,14 +181,14 @@ bot.dialog('Currency', [
         }else{
             
                     session.dialogData.args = args || {};
-                    builder.Prompts.text(session, "Enter base currency, eg.USD.");
+                    builder.Prompts.text(session, "Enter the base currency, eg.USD.");
                     
                 }
             },
                 function(session, results, args, next) {
                     if (checkcurreny(results.response)){
                         session.conversationData["base"] = results.response;
-                        builder.Prompts.text(session,"Enter currency rate based on the currency you entered, eg.AUD.");
+                        builder.Prompts.text(session,"Enter the currency you want to know, eg.AUD.");
                     }else{
                         //if the response is false restart again 
                         session.send("The base currency format is not right");

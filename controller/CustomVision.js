@@ -11,7 +11,7 @@ exports.retreiveMessage = function (session){
         },
         body: { 'Url': session.message.text }
     }, function(error, response, body){
-        console.log(validResponse(body));
+        //console.log(validResponse(body));
         session.send(validResponse(body));
     });
 }

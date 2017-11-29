@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="COMPSCI345 A3">
+    <meta name="author" content="Chenhao Lu">
+
+    <title>Home</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+
+    #chat {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 300px;
+    height: 400px;
+	}
+
+	#chat-button {
+    width: 100px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0.6;
+	}
+
+	#chat-frame {
+    height: 400px;
+    width: 300px;
+    opacity: 0.75;
+	}
+
+	#chat-frame img {
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+	}
+
+	iframe {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    background-image: url(image/background.jpg);
+	background-size: 300px 350px;
+	background-repeat: no-repeat;
+	
+	}
+
+
+	.hide {
+    display: none;
+	}
+
+	
+
+
+
+
+    body {
+        padding-top: 50px;
+        font-family: Verdana, sans-serif;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    }
+
+    .body{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+	background-size: cover;
+	-webkit-filter: blur(5px);
+	z-index: -1;
+	}
+
+	.grad{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+	z-index: 1;
+	opacity: 0.7;
+	}
+
+   
+    .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    font: italic bold 12px/30px Georgia, serif;
+    }
+
+    .sidenav a {
+        padding: 0px 0px 0px 10px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #666666;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover, .offcanvas a:focus{
+        color: #000000;
+    }
+
+    .sidenav .closebtn {
+      
+        right: 500px;
+        font-size: 25px;
+        padding-left: 200px;
+    }
+
+    #main {
+        transition: margin-left .5s;
+        padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 50px;}
+      .sidenav a {font-size: 20px;}
+    }
+
+
+    /* Include the padding and border in an element's total width and height */
+    * {
+      box-sizing: border-box;
+    }
+    #sidebar-wrapper1,#sidebar-wrapper2,#sidebar-wrapper3
+	{
+		background-color: #cccccc;
+		width:150px;
+		height:80px;
+		position:relative;
+		left:20px;
+		top:10px;
+		margin-top:15px;
+		border-radius: 8px;
+		text-align:center;
+		padding-top: 28px;
+	}
+
+	html {
+		overflow: -moz-scrollbars-vertical; 
+    	overflow-y:scroll;
+	}
+
+	.scroll{
+		background-color: #ffffff;
+		width:520px;
+		height:220px;
+		position:relative;
+		left:200px;
+		top:0px;
+		margin-top:15px;
+		border-radius:8px;
+		border-style:solid;
+		border-color:#262626;
+		border-width:4px;
+		overflow-y:scroll;
+	}
+
+	.chatbox1{
+		background-color: #ffffff;
+		width:220px;
+		height:450px;
+		position:relative;
+		left:20px;
+		top:0px;
+		margin-top:15px;
+		border-radius:8px;
+		border-style:solid;
+		border-color:#262626;
+		border-width:2px;
+		overflow-y:scroll;
+	}
+	.chatbox2{
+		background-color: #ffffff;
+		width:220px;
+		height:100px;
+		position:relative;
+		left:20px;
+		top:0px;
+		margin-top:0;
+		border-radius:8px;
+		border-style:solid;
+		border-color:#262626;
+		border-width:2px;
+	}
+	.chat_bt {
+		width:220px;
+		margin:auto;
+	}
+
+
+	#mainpage h2{
+		position:relative;
+		top:0px;
+		left:-110px;
+
+	}
+	.right-sidenav {
+	    height: 100%;
+	    width: 0;
+	    position: fixed;
+	    z-index: 1;
+	    top: 0;
+	    right: 0;
+	    background-color:  #f2f2f2;
+	    overflow-x: hidden;
+	    transition: 0.5s;
+	    padding-top: 60px;
+	}
+
+	.right-sidenav a {
+	    padding: 8px 8px 8px 32px;
+	    text-decoration: none;
+	    font-size: 25px;
+	    color: #818181;
+	    display: block;
+	    transition: 0.3s;
+	}
+
+	.right-sidenav a:hover, .offcanvas a:focus{
+	    color: #f1f1f1;
+	}
+
+	.right-sidenav .closebtn {
+	    position: absolute;
+	    top: 35px;
+	    right: 10px;
+	    font-size: 30px;
+
+	}
+
+	@media screen and (max-height: 450px) {
+	  .right-sidenav {padding-top: 15px;}
+	  .right-sidenav a {font-size: 18px;}
+	}
+	.icon-bar {
+	margin-top:50px;
+	position: absolute;
+    width: 60px; /* Set a specific width */
+    background-color: #555; /* Dark-grey background */
+	}
+
+	.icon-bar a {
+	    display: block; /* Make the links appear below each other instead of side-by-side */
+	    text-align: center; /* Center-align text */
+	    padding: 16px; /* Add some padding */
+	    transition: all 0.2s ease; /* Add transition for hover effects */
+	    color: white; /* White text color */
+	    font-size: 36px; /* Increased font-size */
+	}
+
+	.icon-bar a:hover {
+	    background-color: #999999; /* Add a hover color */
+	}
+
+	.active {
+	    background-color: #999999; /* Add an active/current color */
+	}
+
+	/* Calendar */
+	ul.weekdays {list-style-type: none;}
+	ul.days {list-style-type: none;}
+	ul.months {list-style-type: none;}
+	ul.ann {list-style-type: none;}
+	li.todo {list-style-type: none;}
+
+	/* Month header */
+	.month {
+	    padding: 25px 30px;
+	    background: #666666;
+	    width:48%;
+	    margin: auto;
+	    font: italic bold 12px/30px Georgia, serif;
+	}
+
+	/* Month list */
+	.month ul {
+	    margin: 0;
+	    padding: 0;
+	}
+
+	.month ul li {
+	    color: white;
+	    font-size: 20px;
+	    text-transform: uppercase;
+	    letter-spacing: 3px;
+	    text-align: center;
+	}
+
+	/* Previous button inside month header */
+	.month .prev {
+	    float: left;
+	    padding-top: 10px;
+	}
+
+	/* Next button */
+	.month .next {
+	    float: right;
+	    padding-top: 10px;
+	}
+
+	/* Weekdays (Mon-Sun) */
+	.weekdays {
+	    margin: 0;
+	    padding: 10px 0;
+	    background-color:#ddd;
+	    width:48%;
+	    margin: auto;
+	}
+
+	.weekdays li {
+	    display: inline-block;
+	    width: 13.6%;
+	    color: #666;
+	    text-align: center;
+	}
+
+	/* Days (1-31) */
+	.days {
+	    padding: 10px 0;
+	    background: #eee;
+	    margin: 0;
+	    width:48%;
+	    margin: auto;
+	}
+
+	.days li {
+	    list-style-type: none;
+	    display: inline-block;
+	    width: 13.6%;
+	    text-align: center;
+	    margin-bottom: 5px;
+	    font-size:12px;
+	    color:#777;
+	}
+
+	/* Highlight the "current" day */
+	.days li .active {
+	    padding: 5px;
+	    background: #999999;
+	    color: white !important
+	}
+
+	/*todolist*/
+	    /* Include the padding and border in an element's total width and height */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Remove margins and padding from the list */
+    .todo {
+      padding: 0;
+      width:48%;
+      margin:auto;
+    }
+
+    /* Style the list items */
+    .todo {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      margin:auto;
+      background: #eee;
+      font-size: 18px;
+      transition: 0.2s;
+      
+      /* make the list items unselectable */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Set all odd list items to a different color (zebra-stripes) */
+    .todo:nth-child(odd) {
+      background: #f9f9f9;
+    }
+
+    /* Darker background-color on hover */
+    .todo:hover {
+      background: #ddd;
+    }
+	    /* When clicked on, add a background color and strike out text */
+	.todo.checked {
+	  background: #888;
+	  color: #fff;
+	  text-decoration: line-through;
+	}
+
+	/* Add a "checked" mark when clicked on */
+	.todo.checked::before {
+	  content: '';
+	  position: absolute;
+	  border-color: #fff;
+	  border-style: solid;
+	  border-width: 0 2px 2px 0;
+	  top: 10px;
+	  left: 16px;
+	  transform: rotate(45deg);
+	  height: 15px;
+	  width: 7px;
+	}
+
+	.ann{
+		margin-bottom: 10px;
+	}
+
+	.td{
+		margin-bottom: 10px;
+	}
+
+    /* Style the close button */
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 12px 16px 18px 16px;
+    }
+
+    .close:hover {
+      background-color: #f44336;
+      color: white;
+    }
+
+    /* Style the header */
+    .header {
+      background-color: #000;
+      padding: 20px 40px;
+      color: white;
+      text-align: center;
+      width:48%;
+      margin:auto;
+      margin-top: 50px;
+      opacity: 0.6;
+      font: italic bold 12px/30px Georgia, serif;
+    }
+
+
+    /* Clear floats after the header */
+    .header:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .header2 {
+      background-color: #666666;
+      padding: 15px 20px;
+      color: white;
+      text-align: center;
+      width:48%;
+      margin:auto;
+      margin-top: 15px;
+      font: italic bold 12px/30px Georgia, serif;
+
+    }
+
+
+    /* Clear floats after the header */
+    .header2:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    button.accordion {
+		background-color: #b3b3b3;
+		color: #444;
+		cursor: pointer;
+		padding: 18px;
+		width: 48%;
+		border: none;
+		border-radius: 0px;
+		text-align: left;
+		outline: none;
+		font-size: 15px;
+		transition: 0.4s;
+		margin:auto;
+		display: block;
+		opacity: 0.6;
+
+	}
+
+	button.accordion.active, button.accordion:hover {
+		background-color: #cccccc;
+	}
+
+	button.accordion:after {
+		content: '\002B';
+		color: #999;
+		font-weight: bold;
+		float: right;
+		margin-left: 5px;
+	}
+
+	button.accordion.active:after {
+		content: "\2212";
+	}
+
+	div.panel {
+		padding: 0 18px;
+		background-color: #f2f2f2;
+		max-height: 0;
+		width: 48%;
+		overflow: hidden;
+		margin:auto;
+		border-radius: 0px;
+		opacity: 0.6;
+		transition: max-height 0.2s ease-out;
+
+	}
+
+	.groupName{
+		text-align: center;
+	}
+
+	.caseName{
+		text-align: left;
+	}
+
+	.case{
+		display: block;
+		width:48%;
+		padding-left: 15px;
+		text-align: left;
+		margin:auto;
+		cursor: pointer;
+	}
+
+	.caseContent {
+		overflow-y:scroll;
+		width:48%;
+		height:200px;
+		margin:auto;
+		border-width:1px;
+		border-style:solid;
+		border-color:#999999;
+		border-radius:5px;
+		background-color:#fff;
+		font-family: sans-serif;
+	}
+
+	.questions{
+		width:48%;
+		height:123px;
+		margin:auto;
+		border-width:1px;
+		border-style:solid;
+		border-color:#999999;
+		border-radius:5px;
+		background-color:#fff;
+		font-family: sans-serif;
+	}
+
+	.pagination a {
+	    color: black;
+	    float: left;
+	    padding: 8px 16px;
+	    text-decoration: none;
+	    transition: background-color .3s;
+	}
+
+	div.pagination {
+		width:35%;
+		margin:auto;
+		display: block;
+	}
+
+	.pagination a.active {
+	    background-color: #666666;
+	    color: white;
+	}
+
+	.pagination a:hover:not(.active) {background-color: #ddd;}
+
+	.button {
+	  padding: 8px 16px;
+	  font-size: 11px;
+	  text-align: center;
+	  cursor: pointer;
+	  outline: none;
+	  color: #fff;
+	  background-color: #666666;
+	  border: none;
+	  border-radius: 15px;
+	  box-shadow: 0 9px #999;
+	  float:right;
+	}
+
+	.button:hover {background-color: #333333}
+
+	.button:active {
+	  background-color: #333333;
+	  box-shadow: 0 5px #666;
+	  transform: translateY(4px);
+	}
+
+	.bt {
+		width:48%;
+		margin:auto;
+	}
+
+	.feedback {
+		height:200px;
+		width:48%;
+		margin:auto;
+		border-width:1px;
+		border-bottom-width: 0px;
+		border-style:solid;
+		border-color:#999999;
+		border-radius:5px;
+		display: block;
+		overflow-y: scroll;
+
+	}
+
+	.response {
+		height:50px;
+		width:48%;
+		margin:auto;
+		border-width:1px;
+		border-style:solid;
+		border-color:#999999;
+		border-radius:5px;
+		display: block;
+	}
+
+
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+    	function disappear(el){
+		caller = $(el).find(".badge");
+		caller.css('display', 'none');
+	}
+    </script>
+
+</head>
+
+<body id="body" data-gr-c-s-loaded="true">
+	
+	<div><div class="body"><div class="grad"></div></div></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" onclick="openNav()" class="navbar-brand" id="Home"><img src='image/login.png' height="30" width="100"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+                <ul class="nav navbar-nav navbar-right">
+                	<li>
+                	<a href="#"><span class="glyphicon glyphicon-search"></span> Find a branch / ATM</a>
+                	</li>
+                	<li class="dropdown">
+                		<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-globe"></span> New Zealand<b class="caret"></b></a>
+                	</li>
+                    <li class="dropdown">
+                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Account<b class="caret"></b></a>
+                    	<ul class="dropdown-menu">
+                    		<li><a href="#">Profile</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href="#">Settings</a></li>
+                    		<li class="divider"></li>
+                    		<li><a href="#">Log out</a></li>
+                		</ul>
+                    </li>
+                    <li class="dropdown" onclick="disappear(this)">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span> Notification<span class="badge">1</span></a>
+						<ul class="dropdown-menu">
+                    		<li type="disc" style="margin-left:30px">Amy just sent <br>you a message!</li>
+                		</ul>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-earphone"></span> Contact us</a>
+                    </li>
+                    <li>
+                    	<a href="#"><span class="glyphicon glyphicon-question-sign"></span> Help</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+
+  <div id="mySidenav" class="sidenav">
+
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#8656;</a>
+	  <hr>
+	  <a onclick = "showGroups()" id = "Groups">Accounts and Cards</a>
+	  <hr>
+	  <a onclick="showCase()" id = "Case">Loans and Mortgages</a>
+	  <hr>
+	  <a href="#">Insurance</a>
+	  <hr>
+	   <a href="#">International and Foreign Exchange</a>
+	  <hr>
+  
+  </div>
+
+  <div id="mySidenavRight" class="right-sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">&times;</a>
+	  <div class="row">
+            <div class="col-lg-12 text-center" id="chatbox">
+                <h2 style="margin-top:20px;">Live Chat</h2>
+                <div class="chatbox1" id="chat_feedback">
+                	<img src='image/avatar1.png' width='10%' style='float:left;'><span style='float:left;'>:&nbsp;&nbsp;Hey guys!</span><br><br>
+					<img src='image/avatar2.png' width='10%' style='float:left;'><span style='float:left;'>:&nbsp;&nbsp;Hi!</span><br><br>
+                </div>
+
+                <hr>
+
+
+             	<div class="chatbox2">
+					<textarea type="text" id="chat_response" style="width:100%;height:100%;">Typing...</textarea>
+				</div>
+				<br>
+				<div class="chat_bt">
+					<button type="button" class="button" onclick="chat_send()">Send</button>
+				</div>
+            </div>
+        </div>
+  </div>
+
+  
+
+
+
+  <div id="home">
+  <div id="main">
+  	<!-- Page Content -->
+
+    <div id="myDIV" class="header">
+	  <h2>Real Time Quotes</h2>
+	</div>
+  	<div id="announcement" class="ann">
+
+	  <button class="accordion">Apple Inc</button>
+	  <div class="panel">
+	  	<img src="image/quota.png" style="width:100%; margin-left:0px;">
+	</div>
+
+	  <button class="accordion">Bank of America Corporation</button>
+	  <div class="panel">
+  		<p>Lorem ipsum...</p>
+	</div>
+
+	</div>
+	<div id="chat">
+        <img id="chat-button" src="image/chatico.jpg" onclick="openChat()" />
+        <div id="chat-frame" class="hide">
+           <iframe src='https://webchat.botframework.com/embed/Bank_bot_chat?s=pCNUputrPss.cwA.p8Q.HotsSDwEBjbDqC4EFZQxXe_xQ_i5xKZBlHqE1xdmHeU'></iframe>
+			<img src="image/minus.png" onclick="closeChat()" />
+        </div>
+    </div>
+
+  	
+
+	<div id="myUL" class="ann">
+	  
+	</div>
+   
+  </div>
+  </div>
+
+  <div id = "groupsContent">
+  <div id="groupMain">
+
+
+  </div>
+  </div>
+
+  <div id = "case">
+  <div id="caseMain">
+
+  </div>
+  </div>
+
+  <div id = "caseOne">
+  <div id="caseOneMain">
+
+
+  </div>
+  </div>
+
+
+	<script>
+
+	function openChat() {
+        var frame = document.getElementById("chat-frame");
+        frame.className = "";
+        var img = document.getElementById("chat-button");
+        img.className = "hide";
+    }
+
+    function closeChat() {
+        var frame = document.getElementById("chat-frame");
+        frame.className = "hide";
+        var img = document.getElementById("chat-button");
+        img.className = "";
+    }
+
+	function openNav() {
+	    document.getElementById("mySidenav").style.width = "235px";
+
+	}
+
+	function closeNav() {
+	    document.getElementById("mySidenav").style.width = "0";
+	    document.getElementById("main").style.marginLeft= "0";
+	    document.getElementById("groupMain").style.marginLeft= "0";
+	    document.getElementById("caseMain").style.marginLeft= "0";
+	    document.getElementById("caseOneMain").style.marginLeft= "0";
+	}
+	function openNavRight() {
+	    document.getElementById("mySidenavRight").style.width = "250px";
+	}
+
+	function closeNavRight() {
+	    document.getElementById("mySidenavRight").style.width = "0";
+	    document.getElementById("main").style.marginRight= "0";
+	    document.getElementById("groupMain").style.marginRight= "0";
+	    document.getElementById("caseMain").style.marginRight= "0";
+	    document.getElementById("caseOneMain").style.marginRight= "0";
+	}	
+
+	/*todolist*/
+	// Create a "close" button and append it to each list item
+	var myNodelist = document.getElementsByClassName("todo");
+	var i;
+	for (i = 0; i < myNodelist.length; i++) {
+	  var span = document.createElement("SPAN");
+	  var txt = document.createTextNode("\u00D7");
+	  span.className = "close";
+	  span.appendChild(txt);
+	  myNodelist[i].appendChild(span);
+	}
+
+	// Click on a close button to hide the current list item
+	var close = document.getElementsByClassName("close");
+	var i;
+	for (i = 0; i < close.length; i++) {
+	  close[i].onclick = function() {
+	    var div = this.parentElement;
+	    div.style.display = "none";
+	  }
+	}
+	// Add a "checked" symbol when clicking on a list item
+	var list = document.querySelector('#myUL');
+	list.addEventListener('click', function(ev) {
+	  if (ev.target.tagName === 'LI') {
+	    ev.target.classList.toggle('checked');
+	  }
+	}, false);
+
+	currentTab="";
+	function showHome(){
+		if(currentTab!="Home"){
+			currentTab="Home";
+			showNoTab();
+			
+			document.getElementById("home").style.display = "inline"; //不同的页面之间跳转 (https://stackoverflow.com/questions/21070101/show-hide-div-using-javascript)
+			localStorage.setItem("Tab",currentTab);	//https://www.w3schools.com/html/html5_webstorage.asp 我们就是用的w3s上的代码
+					
+		}
+		document.getElementById("mySidenav").style.width = "0"; //这是off-canvas要求的
+	    document.getElementById("main").style.marginLeft= "0"; //这是off-canvas要求的
+	}
+
+	function showGroups(){
+		
+		if(currentTab!="Groups"){
+			currentTab="Groups";
+			
+			showNoTab();
+			document.getElementById("groupsContent").style.display = "inline";
+			localStorage.setItem("Tab",currentTab);		
+		}
+		
+		document.getElementById("mySidenav").style.width = "0";
+	    document.getElementById("groupMain").style.marginLeft= "0";
+	}
+
+	function showCase(){
+		
+		if(currentTab!="Case"){
+			currentTab="Case";
+			
+			showNoTab();
+			document.getElementById("case").style.display = "inline";
+			localStorage.setItem("Tab",currentTab);		
+		}
+		
+		document.getElementById("mySidenav").style.width = "0";
+	    document.getElementById("caseMain").style.marginLeft= "0";
+	}
+
+	function showCaseOne(){
+		
+		if(currentTab!="caseone"){
+			currentTab="caseone";
+			
+			showNoTab();
+			document.getElementById("caseOne").style.display = "inline";
+			localStorage.setItem("Tab",currentTab);		
+		}
+		
+		document.getElementById("mySidenav").style.width = "0";
+	    document.getElementById("caseOneMain").style.marginLeft= "0";
+	}
+	
+	function showNoTab() {
+			document.getElementById("home").style.display = "none";
+			document.getElementById("groupsContent").style.display = "none";
+			document.getElementById("case").style.display = "none";
+			document.getElementById("caseOne").style.display = "none";
+
+	}
+
+	 /**function showCurrentTab(){
+		showNoTab();
+		var storage = localStorage.getItem("Tab");
+		if (storage==null||storage=="Home"){
+			showHome();
+		}
+		else if(storage =="Groups"){
+			showGroups();
+		}
+		else if(storage =="Case"){
+			showCase();
+		}
+		else if(storage =="caseone"){
+			showCaseOne();
+		}
+		
+	 }
+	  window.onload = function () {
+	         showCurrentTab();
+	 }**/
+	 //https://www.w3schools.com/html/html5_webstorage.asp 我们就是用的w3s上的代码
+
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].onclick = function() {
+	    this.classList.toggle("active");
+	    var panel = this.nextElementSibling;
+	    if (panel.style.maxHeight){
+	      panel.style.maxHeight = null;
+	    } else {
+	      panel.style.maxHeight = panel.scrollHeight + "px";
+	    } 
+	  }
+	}
+
+	function openQuestion(evt, qName) {
+
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("questions");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
+	    document.getElementById(qName).style.display = "block";
+	    evt.currentTarget.className += " active";
+
+	}
+
+	function send() {
+		var param = document.getElementById('response').value;
+		param = "<img src='image/avatar1.png' width='6%' style='margin-left:5px;'>:&nbsp;&nbsp;" + param + "<br><span style='margin-left:10px'>&nbsp;Me</span><br><br>";
+		$('#feedback').append(param);
+		response.value = '';
+		var d = document.getElementById("feedback");
+     	d.scrollTop = d.scrollHeight;
+	}
+
+	function chat_send() {
+		var param = document.getElementById('chat_response').value;
+		param = "<img src='image/avatar1.png' width='10%' style='float:left;'><span style='float:left;'>:&nbsp;&nbsp;"+param+"</span><br><br>";
+		$('#chat_feedback').append(param);
+		chat_response.value = '';
+		var d = document.getElementById("chat_feedback");
+     	d.scrollTop = d.scrollHeight;
+	}
+
+	https://stackoverflow.com/questions/14989629/submit-text-from-div-contenteditable
+	
+
+
+
+
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+
+	</script>
+    
+    <!-- jQuery Version 1.11.1 -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+   
+
+
+
+</body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span><div></div></html>
